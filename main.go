@@ -7,7 +7,8 @@ import (
 )
 
 type PageData struct {
-	Title string
+	Title  string
+	Title2 string
 }
 
 func main() {
@@ -27,7 +28,8 @@ func homePage(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var HomeData = PageData{
-		Title: "Cars Api",
+		Title:  "Cars Api",
+		Title2: "Cars homework",
 	}
 
 	tmpl, err := template.ParseFiles("static/index.html")
