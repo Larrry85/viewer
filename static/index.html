@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cars Data</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+
+<header>Cars Viewer</header>
+
+<body>
+<!-----------------------------------------------------------------------------------------------------------> 
+<div id="main_container">
+<!----------------------------------------------------------------------------------------------------------->
+
+    <div class="sidebar">
+        <a href="/">Home</a>
+        <br>
+   
+        <div class="left_content">
+            <h1>MANUFACTURERS</h1>
+                <ul class="left_menu"  id="categoryList">
+                    {{range $Manufacturer := $.Manufacturers}}
+                    <li class="odd"><a href="#">{{.Name}}</a></li>
+                    {{end}}
+                    </ul>
+        </div><!-- left_content END -->
+    </div><!-- sidebar END -->
+
+    <!-----------------------------------------------------------------------------------------------------------> 
+    <div id="car_table">
+        <h1>Cars info</h1>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Manufacturer</th>
+                    <th>Model</th>
+                    <th>Year</th>
+                    <th>Engine</th>
+                    <th>HP</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div><!-- car-table END -->
+  
+
+  
+<!-----------------------------------------------------------------------------------------------------------> 
+</div><!-- main_container END -->
+<!----------------------------------------------------------------------------------------------------------->
+
+
+
+</body>
+<footer>
+    <p>@Laura & Jonathan 2024 Kood/Sisu</p>
+</footer>
+</html>

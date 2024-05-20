@@ -1,0 +1,98 @@
+/* styles.css */
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+
+/*---------------------------------------------------------*/
+header {
+    background-color: rgb(247, 153, 99);
+    color: rgb(126, 47, 1);
+    padding: 10px;
+    text-align: center;
+    font-size: 100px;
+}
+
+
+/*---------------------------------------------------------*/
+#main_container {
+    margin: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+
+/*---------------------------------------------------------*/
+.sidebar {
+    float: left;
+    width: 20%;
+}
+
+.left_content {
+    float: left;
+    width: 20%;
+}
+
+.left_menu {
+    list-style-type: none;
+    padding: 0;
+    text-align: left;
+}
+
+.left_menu li {
+    padding: 5px;
+}
+
+
+/*---------------------------------------------------------*/
+#car_table {
+    clear: both;
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+thead {
+    background-color: rgb(247, 153, 99)
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+
+/*---------------------------------------------------------*/
+a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+a:hover {
+    background-color: var(--link-hover-color);
+    color: rgb(235, 80, 9);
+}
+
+/*---------------------------------------------------------*/
+footer {
+    background-color: rgb(247, 153, 99);
+    color: rgb(126, 47, 1);
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

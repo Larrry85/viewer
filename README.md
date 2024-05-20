@@ -16,7 +16,7 @@ go build main.go
 
 ```
 localhost:8080
-localhost:3000/api
+localhost:3000/cars
 ```
 
 3. Index.html page functionality:
@@ -84,7 +84,7 @@ cars/
 │   ├── index.html  
 │   └── styles.css   
 │
-├── go.mog
+├── go.mod
 ├── main.go    
 └── README.md
              
