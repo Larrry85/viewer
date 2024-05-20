@@ -11,8 +11,8 @@ import (
 // You should see the car data displayed in the HTML template
 func GoServer() error {
 	http.HandleFunc("/", homePage)
-    http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))   
-    log.Println("starting server at port 8080")
+	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
+	log.Println("starting server at port 8080")
 	return http.ListenAndServe(":8080", nil)
 }
 
@@ -37,8 +37,7 @@ func homePage(w http.ResponseWriter, r *http.Request) {
 	}
 	err = tmpl.Execute(w, carsData)
 	if err != nil {
-        log.Println("Error executing template:", err)
-        return
+		log.Println("Error executing template:", err)
+		return
 	}
 }
-
