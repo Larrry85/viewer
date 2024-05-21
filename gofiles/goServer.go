@@ -17,7 +17,7 @@ func GoServer() error {
 	http.HandleFunc("/api/categories", categoriesHandler)
 	http.HandleFunc("/api/manufacturers", manufacturersHandler)
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
-	http.Handle("/api/images/", http.StripPrefix("/api/images/", http.FileServer(http.Dir("img"))))
+	http.Handle("/api/img/", http.StripPrefix("/api/img/", http.FileServer(http.Dir("img"))))
 
 	log.Println("starting server at port 8080")
 	return http.ListenAndServe(":8080", nil)
