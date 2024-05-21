@@ -23,7 +23,7 @@
             <h1>MANUFACTURERS</h1>
                 <ul class="left_menu"  id="categoryList">
                     {{range $Manufacturer := $.Manufacturers}}
-                    <li class="odd"><a href="#">{{.Name}}</a></li>
+                    <li class="odd"><a href="http://localhost:3001/api/models/{id}">{{.Name}}</a></li>
                     {{end}}
                     </ul>
         </div><!-- left_content END -->
@@ -47,13 +47,13 @@
             <tbody>
                 {{range $Car := $.CarModels}}
                 <tr>
-                    <td><img src="/api/img/{{$Car.Image}}" alt="{{$Car.Name}}" width="100"></td>
+                    <td><img src="http://localhost:3001/api/img/{{$Car.Image}}" alt="{{$Car.Name}}" width="100"></td>
                     <td>{{$Car.ManufacturerName}}</td>
                     <td>{{$Car.Name}}</td>
                     <td>{{$Car.Year}}</td>
                     <td>{{$Car.Specifications.Engine}}</td>
                     <td>{{$Car.Specifications.Horsepower}}</td>
-                    <td><a href="#">View</a></td>
+                    <td><a href="http://localhost:3001/api/models/{id}">View</a></td>
                 </tr>
                 {{end}}
             </tbody>
