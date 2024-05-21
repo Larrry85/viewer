@@ -78,7 +78,8 @@ cars/
 │   ├── apiServer.go          // starts api server 3000
 │   ├── CarData.go            // car data struct
 │   ├── getCarData.go         // how to get data to html
-│   └── goServer.go           // starts go server 8080
+│   ├── getCarData.go         // starts go server 8080
+│   └── handlers.go  
 │
 ├── static/
 │   ├── index.html  

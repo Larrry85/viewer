@@ -29,6 +29,7 @@ type Car struct {
 		Drivetrain   string `json:"drivetrain"`
 	} `json:"specifications"`
 	Image string `json:"image"`
+	ManufacturerName string `json:"manufacturerName"` // !!!!!!!!!!!!!!!!
 }
 
 // CarsData: Represents the overall data structure retrieved from the API.

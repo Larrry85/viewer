@@ -45,17 +45,20 @@
                 </tr>
             </thead>
             <tbody>
-
+                {{range $Car := $.CarModels}}
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td><img src="/api/images/{{$Car.Image}}" alt="{{$Car.Name}}" width="100"></td>
+                    <td>{{$Car.ManufacturerName}}</td>
+                    <td>{{$Car.Name}}</td>
+                    <td>{{$Car.Year}}</td>
+                    <td>{{$Car.Specifications.Engine}}</td>
+                    <td>{{$Car.Specifications.Horsepower}}</td>
+                    <td><a href="#">View</a></td>
                 </tr>
+                {{end}}
             </tbody>
         </table>
+        <br><br><br><br>
     </div><!-- car-table END -->
   
 <!-----------------------------------------------------------------------------------------------------------> 
