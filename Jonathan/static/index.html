@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{.Title}}</title>
+    <link rel="stylesheet" href="static/styles.css">
+</head>  
+<body>
+    <h1>{{.Title2}}</h1>
+    <div class="sidebar">
+        <h3>Manufacturers</h3>
+        <ul>
+            {{range .CarNames}}
+                <li><a href="/car/{{.}}">{{.}}</a></li>
+            {{else}}
+                <li>no car manufacturers</li>
+            {{end}}        
+        </ul>
+
+    </div>
+</body>
+<footer>
+    <p>@Laura & Jonathan 2024 Kood/Sisu</p>
+</footer>
+</html>
+
