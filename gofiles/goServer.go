@@ -13,7 +13,6 @@ import (
 	"fmt"
 )
 
-
 // data.json path
 var directory = "api"
 var fileName = "data.json"

@@ -4,18 +4,18 @@
 package gofiles
 
 import (
-	"encoding/json"
-	"html/template"
+	//"encoding/json"
+	//"html/template"
 	"net/http"
-	"strconv"
-	"log"
-	"os/exec"
-	"time"
+	//"strconv"
+	//"log"
+	//"os/exec"
+	//"time"
 	"path/filepath"
 	"mime"
-	"errors"
+	//"errors"
 )
-
+/*
 // start api server
 func ApiServer() {
 
@@ -52,7 +52,7 @@ func ApiServer() {
 	if err := http.ListenAndServe(":3000", nil); err != nil {
 		log.Fatalf("API server failed: %v", err)
 	}
-}
+}*/
 
 // Servereiden pitäisi tehdä yhteistyötä toistensa kanssa
 func corsMiddleware(next http.Handler) http.Handler {
@@ -85,7 +85,7 @@ func serveImage(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, filePath)
 }
 
-
+/*
 // handles requests to the /api endpoint
 func APIHandler(w http.ResponseWriter, r *http.Request) {
 	// Fetch car data
@@ -143,7 +143,7 @@ func carDetailsHandler(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusNotFound)
 			return
-		}
+		}*/
 	/*
 	carsData, err := GetCarData()
 	if err != nil {
@@ -162,7 +162,7 @@ func carDetailsHandler(w http.ResponseWriter, r *http.Request) {
 	if !found {
 		http.Error(w, "Car not found", http.StatusNotFound)
 		return
-	}*/
+	}*//*
 	tmpl, err := template.ParseFiles("static/carDetails.html")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -201,4 +201,4 @@ func GetCarDetailsByID(id int) (Car, error) {
 
 	// If the car with the specified ID is not found, return an error
 	return Car{}, errors.New("car not found")
-}
+}*/
