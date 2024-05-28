@@ -5,24 +5,25 @@ This is task number four.
 
 ## How To Use
 
-1. Before starting the program:
+### Before starting the program:
 
-### Download 'api cars directory' inside 'cars' project from kood/sisu's page - if it is not in 'cars' repo already.
+1. Download 'api cars directory' inside 'cars' project from kood/sisu's page - if it is not in 'cars' repo already.
 Read the README.md in 'api' directory:
 
 Install NodeJS
+
 Install NPM
 
-2.  Program starts node server and go server:
+### Program starts node server and go server:
 
-### Type in terminal window:
+1. Type in terminal window:
 
 ```
 cd api
 node main.js
 ```
 
-### Type in another terminal window:
+2. Type in another terminal window:
 
 ```
 cd ..
@@ -30,9 +31,9 @@ go run main.go
 ```
 
 
-3.  Open browser:
+### Open browser:
 
-### Type in addres bar:
+3. Type in addres bar:
 
 index.html:
 ```
@@ -56,9 +57,9 @@ example id:
 localhost/3000/api/models/8
 ```
 
-3. Page functionality:
+### Page functionality:
 
-### index.html:
+1. index.html:
 
 *  gallery
 *  detail button
@@ -66,7 +67,7 @@ localhost/3000/api/models/8
 *  
 *  
 
-### carDetails.html:
+2. carDetails.html:
 
 *  car detail window
 *  
@@ -75,7 +76,7 @@ localhost/3000/api/models/8
 * 
 
 
-4. Close the servers:
+### Close the servers:
 
 ```
 Ctrl+C
