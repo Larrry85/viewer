@@ -1,19 +1,19 @@
 // OLD VERSION
-/*
+
 
 // apiServer.go
 package gofiles
 
 import (
-	"encoding/json"
-	"net/http"
-	"os"
-	"path/filepath"
+	//"encoding/json"
+	//"net/http"
+	//"os"
+	//"path/filepath"
 )
 
 // Open your browser and navigate to http://localhost:3001/cars
 // You should see the JSON data
-func ApiServer() error {
+/*func ApiServer() error {
 
 	// Serves the car data stored in the data.json file at the /cars endpoint
 	http.HandleFunc("/cars", func(w http.ResponseWriter, r *http.Request) {
@@ -26,7 +26,7 @@ func ApiServer() error {
 		}
 		defer file.Close()
 
-		var carsData CarsData
+		//var carsData CarsData
 
 		// decodes file contents into a CarsData struct...
 		decoder := json.NewDecoder(file)
@@ -40,5 +40,4 @@ func ApiServer() error {
 	})
 
 	return http.ListenAndServe(":3001", nil) // Listens port 3001
-}
-*/
+}*/

@@ -1,11 +1,11 @@
 // OLD VERSION
 
-/*
+
 // goServer.go
 package gofiles
 
 import (
-	"html/template"
+	//"html/template"
 	"log"
 	"net/http"
 )
@@ -33,36 +33,35 @@ func homePage(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Fetch car data from the API server
-	carsData, err := GetCarData()
+	/*carsData, err := GetCarData()
 	if err != nil {
 		http.Error(w, "Failed to fetch car data", http.StatusInternalServerError) // 500
 		return
-	}
+	}*/
 
 // !!!!!!!!!!!!!!!!
-	// Prepare a map for quick lookup of manufacturers by ID
+	/*// Prepare a map for quick lookup of manufacturers by ID
 	manufacturerMap := make(map[int]string)
 	for _, manufacturer := range carsData.Manufacturers {
 		manufacturerMap[manufacturer.ID] = manufacturer.Name
-	}
+	}*/
 
 // !!!!!!!!!!!!!!!!
 	// Add Manufacturer names to CarModels based on ManufacturerID
-	for i, car := range carsData.CarModels {
+	/*for i, car := range carsData.CarModels {
 		carsData.CarModels[i].ManufacturerName = manufacturerMap[car.ManufacturerID]
-	}
+	}*/
 
 
 	// Render the HTML template with the car data
-	tmpl, err := template.ParseFiles("static/index.html")
+	/*tmpl, err := template.ParseFiles("static/index.html")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError) // 500
 		return
 	}
-	err = tmpl.Execute(w, carsData)
+	//err = tmpl.Execute(w, carsData)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError) // 500
 		return
-	}
+	}*/
 }
-*/
