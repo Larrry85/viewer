@@ -12,7 +12,7 @@ Read the README.md in 'api' directory:
 
 Install NodeJS
 
-Install NPM
+Install NPM: npm install
 
 ### Program starts node server and go server:
 
