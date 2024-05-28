@@ -35,26 +35,28 @@ go run main.go
 
 3. Type in addres bar:
 
-index.html:
+index.html
 ```
-localhost/8080
+localhost:8080
 ```
 
-raw car data:
+raw car data
 ```
-localhost/3000/api
-localhost/3000/api/models
-localhost/3000/api/manufacturers
-localhost/3000/api/categories
+localhost:3000/api
+localhost:3000/api/models
+localhost:3000/api/manufacturers
+localhost:3000/api/categories
 ```
-car id:
-localhost/3000/api/models/{id}
-localhost/3000/api/manufacturers/{id}
-localhost/3000/api/categories/{id}
+car id
+```
+localhost:3000/api/models/{id}
+localhost:3000/api/manufacturers/{id}
+localhost:3000/api/categories/{id}
+```
 
-example id:
+example id
 ```
-localhost/3000/api/models/8
+localhost:3000/api/models/8
 ```
 
 ### Page functionality:
