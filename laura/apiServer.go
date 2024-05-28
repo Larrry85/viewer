@@ -1,4 +1,5 @@
 // OLD VERSION
+/*
 
 // apiServer.go
 package gofiles
@@ -40,3 +41,4 @@ func ApiServer() error {
 
 	return http.ListenAndServe(":3001", nil) // Listens port 3001
 }
+*/

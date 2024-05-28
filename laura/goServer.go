@@ -1,5 +1,6 @@
 // OLD VERSION
 
+/*
 // goServer.go
 package gofiles
 
@@ -64,3 +65,4 @@ func homePage(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 }
+*/
