@@ -8,7 +8,7 @@ import (
 
 // Sends an HTTP GET request to http://localhost:3000/api
 // to fetch the car data served by the ApiServer
-func GetCarData() (CarsData, error) {
+func GetCarData() ([]Car, error) {
 	resp, err := http.Get("http://localhost:3000/api")
 	if err != nil {
 		return nil, err
