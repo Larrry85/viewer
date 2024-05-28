@@ -1,98 +1,150 @@
 /* styles.css */
 
-
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #f4f4f4;
 }
-
 
 /*---------------------------------------------------------*/
 header {
-    background-color: rgb(247, 153, 99);
-    color: rgb(126, 47, 1);
-    padding: 10px;
+    background-color: #333;
+    color: #fff;
     text-align: center;
-    font-size: 100px;
+    padding: 10px 0;
 }
 
-
-/*---------------------------------------------------------*/
-#main_container {
-    margin: 20px;
-}
-
-h1 {
-    text-align: center;
-}
-
-
-/*---------------------------------------------------------*/
-.sidebar {
-    float: left;
-    width: 20%;
-}
-
-.left_content {
-    float: left;
-    width: 20%;
-}
-
-.left_menu {
-    list-style-type: none;
-    padding: 0;
-    text-align: left;
-}
-
-.left_menu li {
-    padding: 5px;
-}
-
-
-/*---------------------------------------------------------*/
-#car_table {
-    clear: both;
-    margin-top: 20px;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-thead {
-    background-color: rgb(247, 153, 99)
-}
-
-th, td {
-    padding: 10px;
-    text-align: left;
-}
-
-th {
-    background-color: var(--primary-color);
-    color: white;
-}
-
-
-/*---------------------------------------------------------*/
-a {
-    color: var(--link-color);
-    text-decoration: none;
-}
-
-a:hover {
-    background-color: var(--link-hover-color);
-    color: rgb(235, 80, 9);
-}
-
-/*---------------------------------------------------------*/
 footer {
-    background-color: rgb(247, 153, 99);
-    color: rgb(126, 47, 1);
-    padding: 10px;
+    background-color: #333;
+    color: #fff;
     text-align: center;
+    padding: 10px 0;
     position: fixed;
     bottom: 0;
     width: 100%;
+}
+/*---------------------------------------------------------*/
+#main_container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/*---------------------------------------------------------*/
+.filter-form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.filter-form h2 {
+    margin-top: 0;
+    color: #333;
+}
+
+.filter-form .filter {
+    margin-bottom: 10px;
+}
+
+.filter-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.filter-form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.filter-form button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.filter-form button:hover {
+    background-color: #555;
+}
+
+/*---------------------------------------------------------*/
+.car-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.car {
+    width: calc(33.33% - 20px);
+    margin-bottom: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.car-name {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.car img {
+    width: 100%;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.info-button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 0;
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.info-button:hover {
+    background-color: #555;
+}
+
+.car-info {
+    width: 100%;
+    background-color: #eee;
+    padding: 10px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.car-info td {
+    padding: 5px 0;
+}
+
+.car-info td:first-child {
+    font-weight: bold;
+    color: #333;
+}
+
+/*---------------------------------------------------------*/
+@media (max-width: 768px) {
+    .car {
+        width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .car {
+        width: calc(100% - 20px);
+    }
 }

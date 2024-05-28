@@ -15,59 +15,65 @@
 <div id="main_container">
 <!----------------------------------------------------------------------------------------------------------->
 
-    <div class="sidebar">
-        <a href="/">Home</a>
-        <br>
-   
-        <div class="left_content">
-            <h1>MANUFACTURERS</h1>
-                <ul class="left_menu"  id="categoryList">
-                    {{range $Manufacturer := $.Manufacturers}}
-                    <li class="odd"><a href="http://localhost:3001/api/models/{id}">{{.Name}}</a></li>
-                    {{end}}
-                    </ul>
-        </div><!-- left_content END -->
-    </div><!-- sidebar END -->
+<div class="sidebar">
+    <a href="/">Home</a>
+</div><br>
 
-    <!-----------------------------------------------------------------------------------------------------------> 
-    <div id="car_table">
-        <h1>Cars info</h1>
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>Image</th>
-                    <th>Manufacturer</th>
-                    <th>Model</th>
-                    <th>Year</th>
-                    <th>Engine</th>
-                    <th>HP</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {{range $Car := $.CarModels}}
-                <tr>
-                    <td><img src="http://localhost:3001/api/img/{{$Car.Image}}" alt="{{$Car.Name}}" width="100"></td>
-                    <td>{{$Car.ManufacturerName}}</td>
-                    <td>{{$Car.Name}}</td>
-                    <td>{{$Car.Year}}</td>
-                    <td>{{$Car.Specifications.Engine}}</td>
-                    <td>{{$Car.Specifications.Horsepower}}</td>
-                    <td><a href="http://localhost:3001/api/models/{id}">View</a></td>
-                </tr>
-                {{end}}
-            </tbody>
-        </table>
-        <br><br><br><br>
-    </div><!-- car-table END -->
-  
+
+    <!-- Car Gallery -->
+    <div class="car-gallery">
+        {{range .CarModels}}
+        <div class="car">
+            <div class="car-name">{{.Name}}</div>
+            <img src="http://localhost:8080/img/{{.Image}}" alt="{{.Name}}">
+
+            <button class="info-button" onclick="openDetailsPage('{{.ID}}')">Details</button>
+            <!-- javaScript -->          
+            <script>function openDetailsPage(carID) {
+            window.open('/car-details?id=' + carID, '_blank', 'width=800,height=600');
+            }
+            </script><!-- javaScript END -->
+
+        </div><!-- car END -->
+        {{end}}
+    </div><!-- car-gallery END -->
+
 <!-----------------------------------------------------------------------------------------------------------> 
 </div><!-- main_container END -->
 <!----------------------------------------------------------------------------------------------------------->
 
+
+<!-- Filter Form -->
+<div class="filter-form">
+    <h2>Filter Cars</h2>
+    <form action="/" method="get">
+        <div class="filter">
+            <label for="year">Year:</label>
+            <select id="year" name="year">
+                <option value="">All</option>
+                {{range .CarModels}}
+                <option value="{{.Year}}">{{.Year}}</option>
+                {{end}}
+            </select>
+        </div>
+        <div class="filter">
+            <label for="category">Category:</label>
+            <select id="category" name="category">
+                <option value="">All</option>
+                {{range .Categories}}
+                <option value="{{.Name}}">{{.Name}}</option>
+                {{end}}
+            </select>
+        </div>
+        <button type="submit">Apply Filters</button>
+    </form>
+</div><!-- Filter Form END -->
+<br><br><br><br>
+
+
 </body>
+<!----------------------------------------------------------------------------------------------------------->
 <footer>
     <p>@Laura & Jonathan 2024 Kood/Sisu</p>
 </footer>
 </html>
-

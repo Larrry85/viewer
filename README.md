@@ -5,33 +5,82 @@ This is task number four.
 
 ## How To Use
 
-1. Program starts api server and go server:
+1. Before starting the program:
+
+### Download 'api cars directory' inside 'cars' project from kood/sisu's page - if it is not in 'cars' repo already.
+Read the README.md in 'api' directory:
+
+Install NodeJS
+Install NPM
+
+2.  Program starts node server and go server:
+
+### Type in terminal window:
 
 ```
-go build main.go
-./main
+cd api
+node main.js
 ```
 
-2.  Type in address bar:
+### Type in another terminal window:
 
 ```
-localhost:8080
-localhost:3000/cars
+cd ..
+go run main.go
 ```
 
-3. Index.html page functionality:
 
-*  
-*  
+3.  Open browser:
+
+### Type in addres bar:
+
+index.html:
+```
+localhost/8080
+```
+
+raw car data:
+```
+localhost/3000/api
+localhost/3000/api/models
+localhost/3000/api/manufacturers
+localhost/3000/api/categories
+```
+car id:
+localhost/3000/api/models/{id}
+localhost/3000/api/manufacturers/{id}
+localhost/3000/api/categories/{id}
+
+example id:
+```
+localhost/3000/api/models/8
+```
+
+3. Page functionality:
+
+### index.html:
+
+*  gallery
+*  detail button
 *  
 *  
 *  
 
-4. Close the server:
+### carDetails.html:
+
+*  car detail window
+*  
+*  
+*  
+* 
+
+
+4. Close the servers:
 
 ```
 Ctrl+C
 ```
+
 
 ## TO DO
 
@@ -82,6 +131,7 @@ cars/
 │   └── handlers.go  
 │
 ├── static/
+│   ├── carDetails.html
 │   ├── index.html  
 │   └── styles.css   
 │

@@ -1,64 +1,103 @@
+// NEW VERSION
+
 // goServer.go
 package gofiles
 
 import (
+	"encoding/json"
 	"html/template"
 	"log"
 	"net/http"
+	"os"
+	"path/filepath"
+	"fmt"
 )
 
-// Open your browser and navigate to http://localhost:8080/
-// You should see the car data displayed in the HTML template
+
+// data.json path
+var directory = "api"
+var fileName = "data.json"
+var filePath = filepath.Join(directory, fileName)
+
+
+// start Go server
 func GoServer() error {
 	http.HandleFunc("/", homePage)
-	// !!!!!!!!!!!!!!!!
-	http.HandleFunc("/api", apiHandler)
-	http.HandleFunc("/api/models", modelsHandler)
-	http.HandleFunc("/api/categories", categoriesHandler)
-	http.HandleFunc("/api/manufacturers", manufacturersHandler)
-	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
-	http.Handle("/api/img/", http.StripPrefix("/api/img/", http.FileServer(http.Dir("img"))))
 
-	log.Println("starting server at port 8080")
+	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
+	http.Handle("/img/", corsMiddleware(http.StripPrefix("/img/", http.HandlerFunc(serveImage))))
+
+	log.Println("Starting server at port 8080")
 	return http.ListenAndServe(":8080", nil)
 }
 
 func homePage(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path != "/" {
-		http.Error(w, "404 not found.", http.StatusNotFound) // 404
+		http.Error(w, "404 not found.", http.StatusNotFound)
 		return
 	}
 
-	// Fetch car data from the API server
-	carsData, err := GetCarData()
+	// read json file
+	data, err := os.ReadFile(filePath)
 	if err != nil {
-		http.Error(w, "Failed to fetch car data", http.StatusInternalServerError) // 500
+		http.Error(w, fmt.Sprintf("Failed to read file %s: %v", filePath, err), http.StatusInternalServerError)
 		return
 	}
 
-// !!!!!!!!!!!!!!!!
-	// Prepare a map for quick lookup of manufacturers by ID
-	manufacturerMap := make(map[int]string)
-	for _, manufacturer := range carsData.Manufacturers {
-		manufacturerMap[manufacturer.ID] = manufacturer.Name
+	// Parse json data into variables
+	var carData CarsData
+	if err := json.Unmarshal(data, &carData); err != nil {
+		http.Error(w, fmt.Sprintf("Failed to parse JSON: %v", err), http.StatusInternalServerError)
+		return
 	}
-
-// !!!!!!!!!!!!!!!!
-	// Add Manufacturer names to CarModels based on ManufacturerID
-	for i, car := range carsData.CarModels {
-		carsData.CarModels[i].ManufacturerName = manufacturerMap[car.ManufacturerID]
-	}
-
-
+	
 	// Render the HTML template with the car data
 	tmpl, err := template.ParseFiles("static/index.html")
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError) // 500
+		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	err = tmpl.Execute(w, carsData)
+	if err := tmpl.Execute(w, carData); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+}
+
+// ParseCarModels parses car models data from the provided JSON file.
+func ParseCarModels() []Car {
+	data, err := os.ReadFile(filePath)
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError) // 500
-		return
+		log.Fatalf("Failed to read file %s: %v", filePath, err)
 	}
+	var carModels []Car
+	if err := json.Unmarshal(data, &carModels); err != nil {
+		log.Fatalf("Failed to parse car models data: %v", err)
+	}
+	return carModels
+}
+
+// ParseManufacturers parses manufacturers data from the provided JSON file.
+func ParseManufacturers() []Manufacturer {
+	data, err := os.ReadFile(filePath)
+	if err != nil {
+		log.Fatalf("Failed to read file %s: %v", filePath, err)
+	}
+	var manufacturers []Manufacturer
+	if err := json.Unmarshal(data, &manufacturers); err != nil {
+		log.Fatalf("Failed to parse manufacturers data: %v", err)
+	}
+	return manufacturers
+}
+
+// ParseCategories parses categories data from the provided JSON file.
+func ParseCategories() []Category {
+	data, err := os.ReadFile(filePath)
+	if err != nil {
+		log.Fatalf("Failed to read file %s: %v", filePath, err)
+	}
+	var categories []Category
+	if err := json.Unmarshal(data, &categories); err != nil {
+		log.Fatalf("Failed to parse categories data: %v", err)
+	}
+	return categories
 }

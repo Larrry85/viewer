@@ -1,3 +1,6 @@
+/*
+
+
 // handlers.go
 package gofiles
 
@@ -44,4 +47,4 @@ func manufacturersHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(carsData.Manufacturers)
-}
+}*/
