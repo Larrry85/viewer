@@ -28,21 +28,22 @@
             <img src="http://localhost:8080/img/{{.Image}}" alt="{{.Name}}">
 
 
+            <!--id lähetetään /car-detailsiin, id on sama kuin auton .ID-->
+            <!--/ car-details kutsuu carDetailsHandler(), jossa id-->
 
-            <li><a href="/static/carDetails.html">Details button link</a></li><!--opens car detail page-->
+
+            <li><a href="/car-details?id={{.ID}}">Details to same page</a></li><!--opens car detail page-->
 
 
-            <button class="info-button" onclick="openDetailsPage('{{.ID}}')">Details</button>
-            <!-- javaScript -->          
-            <script>function openDetailsPage(carID) {
-            window.open('/car-details?id=' + carID, '_blank', 'width=800,height=600');
-            }
-            </script><!-- javaScript END -->
+                <a href="/car-details?id={{.ID}}" target="_blank">
+                    <button class="info-button">Details to another tab</button>
+                </a>
+
+            
 
         </div><!-- car END -->
         {{end}}
     </div><!-- car-gallery END -->
-
 <!-----------------------------------------------------------------------------------------------------------> 
 </div><!-- main_container END -->
 <!----------------------------------------------------------------------------------------------------------->

@@ -4,16 +4,17 @@
 package gofiles
 
 import (
-	//"encoding/json"
-	//"html/template"
+	"encoding/json"
+	"html/template"
 	"net/http"
-	//"strconv"
+	"strconv"
 	//"log"
 	//"os/exec"
 	//"time"
 	"path/filepath"
 	"mime"
-	//"errors"
+	"errors"
+	"fmt"
 )
 /*
 // start api server
@@ -115,90 +116,55 @@ func JSONHandler(w http.ResponseWriter, r *http.Request, getData func() ([]Car, 
 		http.Error(w, "Failed to encode car data", http.StatusInternalServerError)
 		return
 	}
-}
+}*/
 
 // Tämä sitä varten kun avaa details napin ja carDetails.html sivun
 func carDetailsHandler(w http.ResponseWriter, r *http.Request) {
-	if r.URL.Path != "/car-details" {
-		http.NotFound(w, r)
-		return
-	}
-	idStr := r.URL.Query().Get("id")
-	if idStr == "" {
-		http.Error(w, "Missing car ID", http.StatusBadRequest)
-		return
-	}
-	id, err := strconv.Atoi(idStr)
-	if err != nil {
-		http.Error(w, "Invalid car ID", http.StatusBadRequest)
-		return
-	}
-	carDetails, err := GetCarDetailsByID(id)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-		// Use GetCarDetailsByID to fetch the car details
-		selectedCar, err := GetCarDetailsByID(id)
-		if err != nil {
-			http.Error(w, err.Error(), http.StatusNotFound)
-			return
-		}*/
-	/*
-	carsData, err := GetCarData()
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-	var selectedCar Car
-	found := false
-	for _, car := range carsData {
-		if car.ID == id {
-			selectedCar = car
-			found = true
-			break
-		}
-	}
-	if !found {
-		http.Error(w, "Car not found", http.StatusNotFound)
-		return
-	}*//*
-	tmpl, err := template.ParseFiles("static/carDetails.html")
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
+    // Extract the car ID from the query parameters
+    id := r.URL.Query().Get("id") // tämä id tulee html linkistä
 
-	err = tmpl.Execute(w, selectedCar)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
+    // Perform any necessary validation on the ID
 
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(carDetails)
+    // Fetch car details based on the ID
+    car, err := GetCarDetailsByID(id) // tämä kutsuu GetCarDeatailsByID(), mukana id
+    if err != nil {
+        http.Error(w, "Car not found", http.StatusNotFound)
+        return
+    }
+
+    // Render the car details page using a template
+    tmpl, err := template.ParseFiles("static/carDetails.html") // oikean auton data tällä sivulla
+    if err != nil {
+        http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+        return
+    }
+
+    // Execute the template with the car data
+    if err := tmpl.Execute(w, car); err != nil { // oikean auton data tällä sivulla
+        http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+        return
+    }
 }
 
-func GetCarDetailsByID(id int) (Car, error) {
+func GetCarDetailsByID(idStr string) (Car, error) { 
+    // Convert the string ID to an integer
+    id, err := strconv.Atoi(idStr) // tämän pitäis muuttaa string to int
+    if err != nil {
+        return Car{}, errors.New("invalid car ID")
+    }
 
-	// Fetch car data
-	carsData, err := GetCarData()
-	if err != nil {
-		return Car{}, err
-	}
+    // Make a request to the Go server endpoint to fetch car details
+    resp, err := http.Get(fmt.Sprintf("http://localhost:3000/api/models/%d", id))
+    if err != nil {
+        return Car{}, err
+    }
+    defer resp.Body.Close()
 
-    // Implement your logic to fetch car details based on the provided ID
-    // This could involve querying a database, accessing an API, or any other data source
+    // Decode the response body into a Car struct
+    var car Car
+    if err := json.NewDecoder(resp.Body).Decode(&car); err != nil {
+        return Car{}, err
+    }
 
-    // For demonstration purposes, let's assume you have a list of cars stored in memory
-    // and you want to retrieve the details of a car with the specified ID
-	// Search for the car by ID
-	for _, car := range carsData {
-		if car.ID == id {
-			return car, nil // Return the car details if found
-		}
-	}
-
-	// If the car with the specified ID is not found, return an error
-	return Car{}, errors.New("car not found")
-}*/
+    return car, nil // ...lähettää sen auton data carDetails.html sivulle
+}

@@ -22,6 +22,7 @@ var filePath = filepath.Join(directory, fileName)
 // start Go server
 func GoServer() error {
 	http.HandleFunc("/", homePage)
+	http.HandleFunc("/car-details", carDetailsHandler)
 
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 	http.Handle("/img/", corsMiddleware(http.StripPrefix("/img/", http.HandlerFunc(serveImage))))
