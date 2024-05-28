@@ -3,7 +3,7 @@ package main
 
 import (
 	"cars/gofiles"
-	"log"
+	//"log"
 	//"time"
 )
 
