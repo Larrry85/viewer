@@ -27,6 +27,11 @@
             <div class="car-name">{{.Name}}</div>
             <img src="http://localhost:8080/img/{{.Image}}" alt="{{.Name}}">
 
+
+
+            <li><a href="/static/carDetails.html">Details button link</a></li><!--opens car detail page-->
+
+
             <button class="info-button" onclick="openDetailsPage('{{.ID}}')">Details</button>
             <!-- javaScript -->          
             <script>function openDetailsPage(carID) {
