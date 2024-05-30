@@ -5,12 +5,13 @@ package gofiles
 
 import (
 	"encoding/json"
+	"fmt"
 	"html/template"
 	"log"
 	"net/http"
 	"os"
+	"os/exec"
 	"path/filepath"
-	"fmt"
 )
 
 // data.json path
@@ -18,9 +19,11 @@ var directory = "api"
 var fileName = "data.json"
 var filePath = filepath.Join(directory, fileName)
 
-
 // start Go server
 func GoServer() error {
+
+	go startNode()
+
 	http.HandleFunc("/", homePage)
 	http.HandleFunc("/car-details", carDetailsHandler)
 
@@ -50,7 +53,7 @@ func homePage(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, fmt.Sprintf("Failed to parse JSON: %v", err), http.StatusInternalServerError)
 		return
 	}
-	
+
 	// Render the HTML template with the car data
 	tmpl, err := template.ParseFiles("static/index.html")
 	if err != nil {
@@ -100,4 +103,23 @@ func ParseCategories() []Category {
 		log.Fatalf("Failed to parse categories data: %v", err)
 	}
 	return categories
+}
+
+func startNode() {
+	// Define the command to start the main.js application
+	cmd := exec.Command("node", "main.js")
+
+	// Set the working directory to the Node.js app directory
+	cmd.Dir = "api"
+
+	// Set the environment variables if needed
+	cmd.Env = os.Environ()
+
+	// Start the Node.js application
+	err := cmd.Start()
+	if err != nil {
+		log.Fatalf("Failed to start main.js application: %v", err)
+	}
+	log.Printf("main.js application started with PID %d", cmd.Process.Pid)
+
 }

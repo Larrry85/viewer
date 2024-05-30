@@ -10,6 +10,7 @@
     {{if .Manufacturer}}
         <p><strong>Country:</strong> {{.Manufacturer.Country}}</p>
         <p><strong>Founding Year:</strong> {{.Manufacturer.FoundingYear}}</p>
+        <img src="http://localhost:8080/img/{{.Image}}" alt="{{.Name}}">
     {{else}}
         <p>Car manufacturer details not found.</p>
     {{end}}
