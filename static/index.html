@@ -28,6 +28,10 @@
             <img src="http://localhost:8080/img/{{.Image}}" alt="{{.Name}}">
 
 
+                <!-- The index.html contains placeholders (template syntax) for rendering dynamic data passed from the Go backend. -->
+
+    <!-- The car-gallery section uses the range action to iterate over the CarModels slice in the CarsData struct. -->
+
             <!--id lähetetään /car-detailsiin, id on sama kuin auton .ID-->
             <!--/ car-details kutsuu carDetailsHandler(), jossa id-->
 
@@ -58,7 +62,7 @@
             <select id="year" name="year">
                 <option value="">All</option>
                 {{range .CarModels}}
-                <option value="{{.Year}}">{{.Year}}</option>
+                <option value="{{.}}">{{.}}</option>
                 {{end}}
             </select>
         </div>
@@ -75,6 +79,23 @@
     </form>
 </div><!-- Filter Form END -->
 <br><br><br><br>
+
+
+
+
+    <!-- This section lists cars that match the filter criteria, though the filtering functionality isn't detailed in the provided code. -->
+
+    <!-- Car List -->
+    <div>
+        <h2>Filtered Cars List</h2>
+        <ul>
+            {{range .Cars}}
+                <li>{{.Name}} - {{.Year}} - {{.Category}}</li>
+            {{end}}
+        </ul>
+    </div>
+<br><br><br><br>
+
 
 
 </body>

@@ -12,34 +12,32 @@ Read the README.md in 'api' directory:
 
 Install NodeJS
 
-Install NPM: npm install
+Install NPM:
+```
+npm install
+```
 
 ### Program starts node server and go server:
 
 1. Type in terminal window:
 
 ```
-cd api
-node main.js
-```
-
-2. Type in another terminal window:
-
-```
-cd ..
 go run main.go
 ```
+2. Close server:
 
+```
+Ctrl+C
+```
 
 ### Open browser:
 
-3. Type in addres bar:
+1. Type in addres bar:
 
 index.html
 ```
 localhost:8080
 ```
-
 raw car data
 ```
 localhost:3000/api
@@ -61,28 +59,21 @@ localhost:3000/api/models/8
 
 ### Page functionality:
 
-1. index.html:
+1. Index.html:
 
 *  gallery
-*  detail button
-*  
+*  details button
+*  filtering cars by year / category
 *  
 *  
 
-2. carDetails.html:
+2. CarDetails.html:
 
 *  car detail window
 *  
 *  
 *  
 * 
-
-
-### Close the servers:
-
-```
-Ctrl+C
-```
 
 
 ## TO DO
@@ -118,28 +109,27 @@ cars/
 │
 ├── api/
 │   ├── img/
-│   ├── node_modules
+│   ├── node_modules/
 │   ├── data.json
-│   ├── main.js
+│   ├── main.js             // node server
 │   ├── Makefile
 │   ├── package-lock.json
 │   ├── package.json
 │   └── README.md
 │
 ├── gofiles/
-│   ├── apiServer.go          // starts api server 3000
-│   ├── CarData.go            // car data struct
-│   ├── getCarData.go         // how to get data to html
-│   ├── getCarData.go         // starts go server 8080
-│   └── handlers.go  
+│   ├── CarData.go          // car data structs
+│   ├── getCarData.go       // fetching car data
+│   ├── homePage.go         // render page, parse data
+│   └── serveImg.go  
 │
 ├── static/
-│   ├── carDetails.html
-│   ├── index.html  
+│   ├── carDetails.html     // car details page
+│   ├── index.html          // main page
 │   └── styles.css   
 │
 ├── go.mod
-├── main.go    
+├── main.go                 // starts node server and go server
 └── README.md
              
 ```
