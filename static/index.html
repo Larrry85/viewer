@@ -62,7 +62,7 @@
             <select id="year" name="year">
                 <option value="">All</option>
                 {{range .CarModels}}
-                <option value="{{.}}">{{.}}</option>
+                <option value="{{.Year}}">{{.Year}}</option>
                 {{end}}
             </select>
         </div>
@@ -85,15 +85,15 @@
 
     <!-- This section lists cars that match the filter criteria, though the filtering functionality isn't detailed in the provided code. -->
 
-    <!-- Car List -->
-    <div>
-        <h2>Filtered Cars List</h2>
-        <ul>
-            {{range .Cars}}
-                <li>{{.Name}} - {{.Year}} - {{.Category}}</li>
-            {{end}}
-        </ul>
-    </div>
+<!-- // FILTER CARS ///////////////////-->
+<div>
+    <h2>Filtered Cars List</h2>
+    <ul>
+        {{range .CarModels}}
+            <li>{{.Name}} - {{.Year}} - {{.Category}}</li>
+        {{end}}
+    </ul>
+</div>
 <br><br><br><br>
 
 

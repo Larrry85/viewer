@@ -29,6 +29,12 @@ func main() {
 // start Go server
 func GoServer() error {
 	http.HandleFunc("/", gofiles.HomePage) // "/" handled by HomePage
+
+	
+	// FILTER CARS ///////////////////
+	http.HandleFunc("/filter", gofiles.FilterPage)
+	
+
 	http.HandleFunc("/car-details", gofiles.CarDetailsHandler) // /car-details handled by CarDetailsHandler
 
 	// /static/ serves static files

@@ -8,6 +8,7 @@ import (
 	"strconv"
 	"fmt"
 	"html/template"
+	"os"
 )
 
 // Handles detailed car data fetching and rendering.
@@ -90,3 +91,51 @@ func GetCarData() ([]Car, error) {
 	}
 	return carsData, nil
 }*/
+
+
+// FILTER CARS ///////////////////
+// FilterPage handler processes filter requests and renders filtered data.
+func FilterPage(w http.ResponseWriter, r *http.Request) {
+	data, err := os.ReadFile(filePath)
+	if err != nil {
+		http.Error(w, fmt.Sprintf("Failed to read file %s: %v", filePath, err), http.StatusInternalServerError)
+		return
+	}
+
+	var carData CarsData
+	if err := json.Unmarshal(data, &carData); err != nil {
+		http.Error(w, fmt.Sprintf("Failed to parse JSON: %v", err), http.StatusInternalServerError)
+		return
+	}
+
+	year := r.URL.Query().Get("year")
+	category := r.URL.Query().Get("category")
+
+	filteredCars := filterCars(carData.CarModels, year, category)
+	filteredData := CarsData{
+		CarModels:   filteredCars,
+		Categories:  carData.Categories,
+		Manufacturers: carData.Manufacturers,
+	}
+
+	tmpl, err := template.ParseFiles("static/carDetails.html")
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	if err := tmpl.Execute(w, filteredData); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+}
+
+// filterCars filters car models based on year and category.
+func filterCars(cars []Car, year, category string) []Car {
+	var filtered []Car
+	for _, car := range cars {
+		if (year == "" || fmt.Sprintf("%d", car.Year) == year) &&
+			(category == "" || car.Category == category) {
+			filtered = append(filtered, car)
+		}
+	}
+	return filtered
+}
