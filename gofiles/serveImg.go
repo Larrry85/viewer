@@ -1,6 +1,4 @@
-// NEW VERSION
-
-// apiServer.go
+// serveImg.go
 package gofiles
 
 import (

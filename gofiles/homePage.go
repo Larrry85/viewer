@@ -1,6 +1,4 @@
-// NEW VERSION
-
-// goServer.go
+// homePage.go
 package gofiles
 
 import (
