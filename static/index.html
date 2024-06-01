@@ -1,4 +1,3 @@
-<!--index.html-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,18 +6,35 @@
     <title>Cars Data</title>
     <link rel="stylesheet" href="/static/styles.css">
 </head>
-
+<body>
 <header>Cars Viewer</header>
 
-<body>
-<!-----------------------------------------------------------------------------------------------------------> 
 <div id="main_container">
-<!----------------------------------------------------------------------------------------------------------->
-
-<div class="sidebar">
-    <a href="/">Home</a>
-</div><br>
-
+    <!-- Filter Form -->
+    <div class="filter-form">
+        <h2>Filter Cars</h2>
+        <form action="/" method="get">
+            <div class="filter">
+                <label for="year">Year:</label>
+                <select id="year" name="year">
+                    <option value="">All</option>
+                    {{range .CarModels}}
+                    <option value="{{.Year}}">{{.Year}}</option>
+                    {{end}}
+                </select>
+            </div>
+            <div class="filter">
+                <label for="category">Category:</label>
+                <select id="category" name="category">
+                    <option value="">All</option>
+                    {{range .Categories}}
+                    <option value="{{.Name}}">{{.Name}}</option>
+                    {{end}}
+                </select>
+            </div>
+            <button type="submit">Apply Filters</button>
+        </form>
+    </div><!-- Filter Form END -->
 
     <!-- Car Gallery -->
     <div class="car-gallery">
@@ -26,66 +42,15 @@
         <div class="car">
             <div class="car-name">{{.Name}}</div>
             <img src="http://localhost:8080/img/{{.Image}}" alt="{{.Name}}">
-
-
-                <!-- The index.html contains placeholders (template syntax) for rendering dynamic data passed from the Go backend. -->
-
-    <!-- The car-gallery section uses the range action to iterate over the CarModels slice in the CarsData struct. -->
-
-            <!--id lähetetään /car-detailsiin, id on sama kuin auton .ID-->
-            <!--/ car-details kutsuu carDetailsHandler(), jossa id-->
-
-
-            <li><a href="/car-details?id={{.ID}}">Details to same page</a></li><!--opens car detail page-->
-
-
-                <a href="/car-details?id={{.ID}}" target="_blank">
-                    <button class="info-button">Details to another tab</button>
-                </a>
-
-            
-
+            <div class="car-footer">
+                <a href="/car-details?id={{.ID}}" class="details-link">Details</a>
+            </div>
         </div><!-- car END -->
         {{end}}
     </div><!-- car-gallery END -->
-<!-----------------------------------------------------------------------------------------------------------> 
 </div><!-- main_container END -->
-<!----------------------------------------------------------------------------------------------------------->
 
-
-<!-- Filter Form -->
-<div class="filter-form">
-    <h2>Filter Cars</h2>
-    <form action="/" method="get">
-        <div class="filter">
-            <label for="year">Year:</label>
-            <select id="year" name="year">
-                <option value="">All</option>
-                {{range .CarModels}}
-                <option value="{{.Year}}">{{.Year}}</option>
-                {{end}}
-            </select>
-        </div>
-        <div class="filter">
-            <label for="category">Category:</label>
-            <select id="category" name="category">
-                <option value="">All</option>
-                {{range .Categories}}
-                <option value="{{.Name}}">{{.Name}}</option>
-                {{end}}
-            </select>
-        </div>
-        <button type="submit">Apply Filters</button>
-    </form>
-</div><!-- Filter Form END -->
-<br><br><br><br>
-
-
-
-
-    <!-- This section lists cars that match the filter criteria, though the filtering functionality isn't detailed in the provided code. -->
-
-<!-- // FILTER CARS ///////////////////-->
+<!-- Filtered Cars List -->
 <div>
     <h2>Filtered Cars List</h2>
     <ul>
@@ -94,13 +59,9 @@
         {{end}}
     </ul>
 </div>
-<br><br><br><br>
 
-
-
-</body>
-<!----------------------------------------------------------------------------------------------------------->
 <footer>
     <p>@Laura & Jonathan 2024 Kood/Sisu</p>
 </footer>
+</body>
 </html>
