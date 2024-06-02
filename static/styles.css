@@ -155,11 +155,9 @@ footer {
     font-weight: bold;
 }
 
-.details-link:hover {
-    text-decoration: underline;
-}
-.no-underline {
-    text-decoration: none;
+.filter-cars {
+    font-weight: bold;
+    text-align: center;
 }
 
 .info-button {

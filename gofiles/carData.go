@@ -17,11 +17,11 @@ type Category struct {
 
 // Car represents a car model.
 type Car struct {
-	ID               int    `json:"id"`
-	Name             string `json:"name"`
-	ManufacturerID   int    `json:"manufacturerId"`
-	CategoryID       int    `json:"categoryId"`
-	Year             int    `json:"year"`
+	ID             int    `json:"id"`
+	Name           string `json:"name"`
+	ManufacturerID int    `json:"manufacturerId"`
+	CategoryID     int    `json:"categoryId"`
+	Year           int    `json:"year"`
 	Specifications struct {
 		Engine       string `json:"engine"`
 		Horsepower   int    `json:"horsepower"`
@@ -35,10 +35,10 @@ type Car struct {
 
 // CarsData contains slices of Car, Manufacturer, and Category.
 type CarsData struct {
-	CarModels            []Car          `json:"carModels"`
-	Manufacturers        []Manufacturer `json:"manufacturers"`
-	Categories           []Category     `json:"categories"`
-	ModelEndpoint        string         `json:"modelsEndpoint"` // endpoints
-	CategoriesEndpoint   string         `json:"categoriesEndpoint"` // endpoints
+	CarModels             []Car          `json:"carModels"`
+	Manufacturers         []Manufacturer `json:"manufacturers"`
+	Categories            []Category     `json:"categories"`
+	ModelEndpoint         string         `json:"modelsEndpoint"`        // endpoints
+	CategoriesEndpoint    string         `json:"categoriesEndpoint"`    // endpoints
 	ManufacturersEndpoint string         `json:"manufacturersEndpoint"` // endpoints
 }
