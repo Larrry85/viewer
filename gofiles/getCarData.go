@@ -118,14 +118,15 @@ func FilterPage(w http.ResponseWriter, r *http.Request) {
 		Manufacturers: carData.Manufacturers,
 	}
 
-	tmpl, err := template.ParseFiles("static/carDetails.html")
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-	if err := tmpl.Execute(w, filteredData); err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-	}
+    // Parse and execute the filtered template
+    tmpl, err := template.ParseFiles("static/filtered.html")
+    if err != nil {
+        http.Error(w, err.Error(), http.StatusInternalServerError)
+        return
+    }
+    if err := tmpl.Execute(w, filteredData); err != nil {
+        http.Error(w, err.Error(), http.StatusInternalServerError)
+    }
 }
 
 // filterCars filters car models based on year and category.

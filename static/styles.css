@@ -1,3 +1,5 @@
+/* styles.css */
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -5,6 +7,8 @@ body {
     background-color: #f4f4f4;
 }
 
+
+/*---------------------------------------------------------*/
 header {
     background-color: #333;
     color: #fff;
@@ -22,6 +26,7 @@ footer {
     width: 100%;
 }
 
+/*---------------------------------------------------------*/
 #main_container {
     max-width: 1200px;
     margin: 0 auto;
@@ -36,6 +41,7 @@ footer {
     min-height: 80vh; /* Adjust as needed to center vertically */
 }
 
+/*---------------------------------------------------------*/
 .filter-form {
     background-color: #fff;
     padding: 10px;
@@ -88,6 +94,7 @@ footer {
     background-color: #555;
 }
 
+/*---------------------------------------------------------*/
 .car-gallery {
     display: flex;
     flex-wrap: wrap;
@@ -151,6 +158,9 @@ footer {
 .details-link:hover {
     text-decoration: underline;
 }
+.no-underline {
+    text-decoration: none;
+}
 
 .info-button {
     background-color: #333;
@@ -183,6 +193,7 @@ footer {
     color: #333;
 }
 
+/*---------------------------------------------------------*/
 @media (max-width: 768px) {
     .car {
         width: calc(50% - 20px);
