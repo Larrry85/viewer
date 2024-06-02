@@ -30,7 +30,7 @@ type Car struct {
 	} `json:"specifications"`
 	Image            string `json:"image"`
 	ManufacturerName string `json:"manufacturerName"`
-	Category         string `json:"category"`
+	Category         string `json:"categories"`
 }
 
 // CarsData contains slices of Car, Manufacturer, and Category.

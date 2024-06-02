@@ -1,4 +1,3 @@
-// getCarData.go
 package gofiles
 
 import (
@@ -8,6 +7,7 @@ import (
 	"html/template"
 	"net/http"
 	"os"
+	"sort"
 	"strconv"
 )
 
@@ -110,10 +110,18 @@ func FilterPage(w http.ResponseWriter, r *http.Request) {
 	category := r.URL.Query().Get("category")
 
 	filteredCars := filterCars(carData.CarModels, year, category)
-	filteredData := CarsData{
+	uniqueYears := getUniqueYears(carData.CarModels)
+
+	filteredData := struct {
+		CarModels     []Car
+		Categories    []Category
+		Manufacturers []Manufacturer
+		Years         []int
+	}{
 		CarModels:     filteredCars,
 		Categories:    carData.Categories,
 		Manufacturers: carData.Manufacturers,
+		Years:         uniqueYears,
 	}
 
 	// Parse and execute the filtered template
@@ -137,4 +145,19 @@ func filterCars(cars []Car, year, category string) []Car {
 		}
 	}
 	return filtered
+}
+
+// getUniqueYears extracts unique years from a list of cars.
+func getUniqueYears(cars []Car) []int {
+	yearMap := make(map[int]struct{})
+	for _, car := range cars {
+		yearMap[car.Year] = struct{}{}
+	}
+
+	var years []int
+	for year := range yearMap {
+		years = append(years, year)
+	}
+	sort.Ints(years)
+	return years
 }

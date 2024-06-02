@@ -1,5 +1,3 @@
-<!-- filtered.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,10 +9,7 @@
 <body>
 <header>Filtered Cars</header>
 
-<!----------------------------------------------------------------------------------------------------------->
 <div id="main_container">
-<!----------------------------------------------------------------------------------------------------------->
-
 
     <!-- Filter Form -->
     <div class="filter-form">
@@ -25,19 +20,18 @@
             </div>
         </div><br>
 
-
         <div class="car-footer">
             <p class="details-link no-underline">Filter Cars</p>
         </div>
-    <br>
+        <br>
 
         <form action="/filter" method="get">
             <div class="filter">
                 <label for="year">Year:</label>
                 <select id="year" name="year">
                     <option value="">All</option>
-                    {{range .CarModels}}
-                    <option value="{{.Year}}">{{.Year}}</option>
+                    {{range .Years}}
+                    <option value="{{.}}">{{.}}</option>
                     {{end}}
                 </select>
             </div>
@@ -54,63 +48,53 @@
         </form>
     </div><!-- Filter Form END -->
 
-
-
-<!-- Filtered Cars List -->
-<div>
-    <h2>Filtered Cars List</h2>
-    <ul>
-        {{range .CarModels}}
+    <!-- Filtered Cars List -->
+    <div>
+        <h2>Filtered Cars List</h2>
+        <ul>
+            {{range .CarModels}}
             <li>{{.Name}} - {{.Year}} - {{.Category}}</li>
 
+            <div class="details">
+                <div class="cardetail">
+                    <div class="car-name">{{.Name}}</div>
+                    <img src="http://localhost:8080/img/{{.Image}}" alt="{{.Name}}">
+                    <table class="car-details">
+                        <tr>
+                            <td>Manufacturer</td>
+                            <td>{{.ManufacturerName}}</td>
+                        </tr>
+                        <tr>
+                            <td>Year</td>
+                            <td>{{.Year}}</td>
+                        </tr>
+                        <tr>
+                            <td>Engine</td>
+                            <td>{{.Specifications.Engine}}</td>
+                        </tr>
+                        <tr>
+                            <td>Horsepower</td>
+                            <td>{{.Specifications.Horsepower}}</td>
+                        </tr>
+                        <tr>
+                            <td>Transmission</td>
+                            <td>{{.Specifications.Transmission}}</td>
+                        </tr>
+                        <tr>
+                            <td>Drivetrain</td>
+                            <td>{{.Specifications.Drivetrain}}</td>
+                        </tr>
+                    </table>
+                </div><!-- cardetal END -->
+            </div><!-- details END -->
 
+            {{end}}
+        </ul>
+    </div>
 
-    <div class="details">
-        <div class="cardetail">
-            <div class="car-name">{{.Name}}</div>
-            <img src="http://localhost:8080/img/{{.Image}}" alt="{{.Name}}">
-            <table class="car-details">
-                <tr>
-                    <td>Manufacturer</td>
-                    <td>{{.ManufacturerName}}</td>
-                </tr>
-                <tr>
-                    <td>Year</td>
-                    <td>{{.Year}}</td>
-                </tr>
-                <tr>
-                    <td>Engine</td>
-                    <td>{{.Specifications.Engine}}</td>
-                </tr>
-                <tr>
-                    <td>Horsepower</td>
-                    <td>{{.Specifications.Horsepower}}</td>
-                </tr>
-                <tr>
-                    <td>Transmission</td>
-                    <td>{{.Specifications.Transmission}}</td>
-                </tr>
-                <tr>
-                    <td>Drivetrain</td>
-                    <td>{{.Specifications.Drivetrain}}</td>
-                </tr>
-            </table>
-        </div><!-- cardetal END -->
-    </div><!-- details END -->
-
-
-    {{end}}
-</ul>
-</div>
-
-
-
-
-<!----------------------------------------------------------------------------------------------------------->
 </div><!-- main_container END -->
-<!----------------------------------------------------------------------------------------------------------->
-<br><br><br><br>
 
+<br><br><br><br>
 
 <footer>
     <p>@Laura & Jonathan 2024 Kood/Sisu</p>
