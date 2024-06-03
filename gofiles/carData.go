@@ -29,7 +29,7 @@ type Car struct {
 		Drivetrain   string `json:"drivetrain"`
 	} `json:"specifications"`
 	Image            string `json:"image"`
-	ManufacturerName string `json:"manufacturerName"`
+	//ManufacturerName string `json:"manufacturerName"`
 	Category         string `json:"categories"`
 }
 

@@ -9,16 +9,12 @@
 <body>
 <header>Cars Viewer</header>
 
+<!----------------------------------------------------------------------------------------------------------->
 <div id="main_container">
-
+<!----------------------------------------------------------------------------------------------------------->
+      
     <!-- Filter Form -->
     <div class="filter-form">
-
-        <div class="sidebar">
-            <div class="car-footer">
-                <a href="/" class="details-link">Home</a>
-            </div>
-        </div><br>
 
         <div>
             <p class="filter-cars">Filter Cars</p>
@@ -45,25 +41,41 @@
                 </select>
             </div>
             <button type="submit" value="Submit" href="/filter" target="_blank">Apply Filters</button>
+           <br><br>
+            <div >
+                <div class="car-footer">
+                    <a href="/" class="links">Reset</a>
+                </div>
+            </div><br>     
         </form>
     </div><!-- Filter Form END -->
 
+
+
     <!-- Car Gallery -->
     <div class="car-gallery">
+
         {{range .CarModels}}
+
         <div class="car">
-            <div class="car-name">{{.Name}}</div>
-            <img src="http://localhost:8080/img/{{.Image}}" alt="{{.Name}}">
-            <div class="car-footer">
-                <a href="/car-details?id={{.ID}}" target="_blank" class="details-link">Details</a>
-            </div>
+
+            <div class="car-name">{{.Name}}</div><br>
+
+            <img class="preview-image" src="http://localhost:8080/img/{{.Image}}" alt="{{.Name}}"><br>
+
+                <a href="/car-details?id={{.ID}}" target="_blank" class="links">Details</a>
+
+
         </div><!-- car END -->
         {{end}}
     </div><!-- car-gallery END -->
 
+<br><br>    
+<!----------------------------------------------------------------------------------------------------------->
 </div><!-- main_container END -->
-
+<!----------------------------------------------------------------------------------------------------------->
 <br><br><br><br>
+
 
 <footer>
     <p>@Laura & Jonathan 2024 Kood/Sisu</p>

@@ -3,25 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Filtered Cars</title>
+    <title>Cars Viewer</title>
     <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-<header>Filtered Cars</header>
+<header>Cars Viewer</header>
 
-<div id="main_container">
-
+<!----------------------------------------------------------------------------------------------------------->
+<div id="main_container_filtered">
+<!----------------------------------------------------------------------------------------------------------->
+       
     <!-- Filter Form -->
     <div class="filter-form">
 
-        <div class="sidebar">
-            <div class="car-footer">
-                <a href="/" class="details-link">Home</a>
-            </div>
-        </div><br>
-
-        <div class="car-footer">
-            <p class="details-link no-underline">Filter Cars</p>
+        <div>
+            <p class="filter-cars">Filter Cars</p>
         </div>
         <br>
 
@@ -45,56 +41,69 @@
                 </select>
             </div>
             <button type="submit" target="_blank">Apply Filters</button>
+            <br><br>
+            <div >
+                <div class="car-footer">
+                    <a href="/" class="links">Reset</a>
+                </div>
+            </div><br>     
         </form>
     </div><!-- Filter Form END -->
 
+
+
     <!-- Filtered Cars List -->
-    <div>
-        <h2>Filtered Cars List</h2>
-        <ul>
-            {{range .CarModels}}
-            <li>{{.Name}} - {{.Year}} - {{.Category}}</li>
+    <div class="car-gallery">
 
-            <div class="details">
-                <div class="cardetail">
+          {{range .CarModels}}
+
+           <div class="car">
+
                     <div class="car-name">{{.Name}}</div>
-                    <img src="http://localhost:8080/img/{{.Image}}" alt="{{.Name}}">
-                    <table class="car-details">
-                        <tr>
-                            <td>Manufacturer</td>
-                            <td>{{.ManufacturerName}}</td>
-                        </tr>
-                        <tr>
-                            <td>Year</td>
-                            <td>{{.Year}}</td>
-                        </tr>
-                        <tr>
-                            <td>Engine</td>
-                            <td>{{.Specifications.Engine}}</td>
-                        </tr>
-                        <tr>
-                            <td>Horsepower</td>
-                            <td>{{.Specifications.Horsepower}}</td>
-                        </tr>
-                        <tr>
-                            <td>Transmission</td>
-                            <td>{{.Specifications.Transmission}}</td>
-                        </tr>
-                        <tr>
-                            <td>Drivetrain</td>
-                            <td>{{.Specifications.Drivetrain}}</td>
-                        </tr>
-                    </table>
-                </div><!-- cardetal END -->
-            </div><!-- details END -->
 
-            {{end}}
-        </ul>
-    </div>
+                    <img class="preview-image" src="http://localhost:8080/img/{{.Image}}" alt="{{.Name}}">
+                    <br><br>
 
-</div><!-- main_container END -->
+                            <table class="car-details">
+                                <tr>
+                                    <td>Manufacturer</td>
+                                    <td>{{.Name}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Year</td>
+                                    <td>{{.Year}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Engine</td>
+                                    <td>{{.Specifications.Engine}}</td>
+                                </tr>
+                                <tr>
+                                     <td>Horsepower</td>
+                                     <td>{{.Specifications.Horsepower}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Transmission</td>
+                                    <td>{{.Specifications.Transmission}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Drivetrain</td>
+                                    <td>{{.Specifications.Drivetrain}}</td>
+                                </tr>
+                            </table><!-- car-details END -->
 
-<br><br><br><br>
+                    <br><br>                  
+                    <a href="/car-details?id={{.ID}}" target="_blank" class="links">Details</a>
+                    
+
+        </div><!--car END-->
+        {{end}}
+    <br><br>    
+    </div><!-- car-gallery END-->
+
+<!----------------------------------------------------------------------------------------------------------->
+</div><!-- main_container_filtered END -->
+<!----------------------------------------------------------------------------------------------------------->
+<br><br>
 
 <footer>
     <p>@Laura & Jonathan 2024 Kood/Sisu</p>

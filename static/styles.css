@@ -1,26 +1,29 @@
 /* styles.css */
 
+/* Global styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
+    box-sizing: border-box;
 }
 
-
 /*---------------------------------------------------------*/
+/* Header styles */
 header {
     background-color: #333;
     color: #fff;
     text-align: center;
-    padding: 10px 0;
+    padding: 1rem;
 }
 
+/* Footer styles */
 footer {
     background-color: #333;
     color: #fff;
     text-align: center;
-    padding: 10px 0;
+    padding: 1rem;
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -28,36 +31,64 @@ footer {
 
 /*---------------------------------------------------------*/
 #main_container {
-    max-width: 1200px;
+    max-width: 70%;
+
     margin: 0 auto;
-    padding: 20px;
-    display: flex;
+    margin-left: 20%;
+
+    padding: 1rem;
+    background-color: #d7d5e2;
+}
+
+#main_container_filtered {
+    max-width: 70%;
+
+
+    margin: 0 auto;
+    margin-left: 20%;
+    padding: 1rem;
+    background-color: #d7d5e2;
 }
 
 #main_container_details {
+    max-width: 60%;
+
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 80vh; /* Adjust as needed to center vertically */
+
+    margin: 0 auto;
+    padding: 1rem;
+    background-color: #d7d5e2;
+}
+
+/* Grid container */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+/* Grid item styling */
+.grid-item {
+
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
 }
 
 /*---------------------------------------------------------*/
+/* Filter form styles */
 .filter-form {
     background-color: #fff;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 1px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
-    width: 180px; /* Smaller width */
+    width: 180px;
     position: fixed;
-    top: 100px; /* Adjust this value to increase space from the top */
-    left: 100px; /* Adjust as necessary */
-}
-
-.filter-form h2 {
-    margin-top: 0;
-    font-size: 16px; /* Smaller font size */
-    color: #333;
+    top: 100px;
+    left: 100px;
 }
 
 .filter-form .filter {
@@ -67,93 +98,55 @@ footer {
 .filter-form label {
     display: block;
     margin-bottom: 5px;
-    font-size: 14px; /* Smaller font size */
+    font-size: 14px;
     font-weight: bold;
 }
 
 .filter-form select {
     width: 100%;
-    padding: 5px; /* Smaller padding */
+    padding: 0.5rem;
     border: 1px solid #ccc;
     border-radius: 3px;
-    font-size: 14px; /* Smaller font size */
+    font-size: 14px;
 }
 
 .filter-form button {
-    padding: 5px 10px; /* Smaller padding */
+    padding: 5px 10px;
     background-color: #333;
+    border: none;
+    border-radius: 1px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 14px;
     color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.links {
+    padding: 5px 10px;
+    background-color: #333;
     border: none;
     border-radius: 3px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    font-size: 14px; /* Smaller font size */
+    font-size: 14px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 1px 1px 10px 10px;
 }
 
 .filter-form button:hover {
     background-color: #555;
 }
 
-/*---------------------------------------------------------*/
-.car-gallery {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    flex: 1;
-    margin-left: 220px; /* Adjust to account for the fixed filter form */
-}
-
-.car {
-    width: calc(33.33% - 20px);
-    margin-bottom: 20px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column; /* Ensures footer is at the bottom */
-    justify-content: space-between; /* Ensures footer is at the bottom */
-}
-
-.cardetail {
-    width: 800px;
-    margin-bottom: 20px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column; /* Ensures footer is at the bottom */
-    justify-content: space-between; /* Ensures footer is at the bottom */
-}
-
-.car-name {
-    background-color: #333;
-    color: #fff;
-    padding: 10px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-}
-
-
-
-
-.car img {
-    width: 100%;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-}
-
-.car-footer {
-    background-color: #333;
-    padding: 10px;
-    text-align: center;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-}
-
-.details-link {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
+.links:hover {
+    background-color: #555;
 }
 
 .filter-cars {
@@ -161,46 +154,110 @@ footer {
     text-align: center;
 }
 
-.info-button {
+/*---------------------------------------------------------*/
+/* Car gallery styles */
+.car-gallery {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2rem;
+    margin-left: 20px;
+}
+
+.car {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    text-align: center;
+    background-color: #fff;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease;
+    border-radius: 20px;
+    box-shadow: 10px 20px 10px rgba(0, 0, 0, 0.5);
+}
+
+.car:hover {
+    transform: scale(1.05);
+}
+
+.car-name {
+    border-radius: 10px 10px 1px 1px;
+    text-align: center;
+    min-height: 3rem;
+    min-width: 5rem;
+    font-size: 1rem;
+    margin: 0.5rem 0;
     background-color: #333;
     color: #fff;
-    border: none;
-    border-radius: 0;
     padding: 10px;
+   /* font: bold Georgia;*/
+
+}
+
+.preview-image {
     width: 100%;
-    cursor: pointer;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px; 
 }
 
-.info-button:hover {
-    background-color: #555;
+/*---------------------------------------------------------*/
+/* Car details styles */
+.cardetail {
+    min-width: 50%;
+    max-width: 90% ;
 }
 
-.car-info {
+/* Image styling */
+.cardetail img {
     width: 100%;
-    background-color: #eee;
-    padding: 10px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 10px 20px 10px rgba(0, 0, 0, 0.5);
+}
+.cardetail .car-name {
+    box-shadow: 10px 30px 10px rgba(0, 0, 0, 0.5);
 }
 
-.car-info td {
-    padding: 5px 0;
+/* Table styling */
+.car-details {
+    width: 100%;
+    margin: 1rem 0;
 }
 
-.car-info td:first-child {
+.car-details td {
+    padding: 0.5rem;
+    border-top: 1px solid #ddd;
+}
+
+.car-details td:first-child {
     font-weight: bold;
     color: #333;
 }
 
 /*---------------------------------------------------------*/
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .car-gallery {
+        grid-template-columns: repeat(4, 1fr); /* Four columns for medium screens */
+    }
+}
+
+@media (max-width: 992px) {
+    .car-gallery {
+        grid-template-columns: repeat(3, 1fr); /* Three columns for smaller screens */
+    }
+}
+
 @media (max-width: 768px) {
-    .car {
-        width: calc(50% - 20px);
+    .car-gallery {
+        grid-template-columns: repeat(2, 1fr); /* Two columns for small screens */
     }
 }
 
 @media (max-width: 480px) {
-    .car {
-        width: calc(100% - 20px);
+    .car-gallery {
+        grid-template-columns: 1fr; /* One column for extra small screens */
     }
 }
