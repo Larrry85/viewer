@@ -77,6 +77,9 @@ footer {
     border-radius: 4px;
 }
 
+.button-container {
+    text-align: center;
+}
 
 /*---------------------------------------------------------*/
 /* Filter form styles */
@@ -90,6 +93,7 @@ footer {
     position: fixed;
     top: 100px;
     left: 100px;
+    text-align: center;
 }
 
 .filter-form .filter {
@@ -122,12 +126,10 @@ footer {
     color: #fff;
     text-decoration: none;
     font-weight: bold;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
 
 }
+
 .links {
     padding: 5px 10px;
     background-color: #333;
@@ -140,6 +142,11 @@ footer {
     text-decoration: none;
     font-weight: bold;
     border-radius: 1px 1px 10px 10px;
+
+}
+
+.filter {
+    text-align: left;
 }
 
 .filter-form button:hover {
