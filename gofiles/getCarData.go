@@ -9,6 +9,7 @@ import (
 	"os"
 	"sort"
 	"strconv"
+	"strings"
 )
 
 // Handles detailed car data fetching and rendering.
@@ -69,78 +70,105 @@ func CarDetailsHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-/*
-// Sends an HTTP GET request to http://localhost:3000/api
-// to fetch the car data served by the ApiServer
-func GetCarData() ([]Car, error) {
-	resp, err := http.Get("http://localhost:3000/api")
-	if err != nil {
-		return nil, err
-	}
-	defer resp.Body.Close()
-
-	if resp.StatusCode != http.StatusOK {
-		return nil, err
-	}
-
-	var carsData []Car
-	err = json.NewDecoder(resp.Body).Decode(&carsData)
-	if err != nil {
-		return nil, err
-	}
-	return carsData, nil
-}*/
-
 // FILTER CARS ///////////////////
+
+// FindManufacturerByID returns the manufacturer by ID.
+func FindManufacturerByID(id int, manufacturers []Manufacturer) (Manufacturer, error) {
+	for _, manufacturer := range manufacturers {
+		if manufacturer.ID == id {
+			return manufacturer, nil
+		}
+	}
+	return Manufacturer{}, fmt.Errorf("manufacturer not found")
+}
+
+// FindCategoryByID returns the category by ID.
+func FindCategoryByID(id int, categories []Category) (Category, error) {
+	for _, category := range categories {
+		if category.ID == id {
+			return category, nil
+		}
+	}
+	return Category{}, fmt.Errorf("category not found")
+}
+
+// PopulateCarDetails populates the car details including manufacturer and category names.
+func PopulateCarDetails(car *Car, data CarsData) error {
+	manufacturer, err := FindManufacturerByID(car.ManufacturerID, data.Manufacturers)
+	if err != nil {
+		return err
+	}
+	car.ManufacturerName = manufacturer.Name
+
+	category, err := FindCategoryByID(car.CategoryID, data.Categories)
+	if err != nil {
+		return err
+	}
+	car.CategoryName = category.Name
+
+	return nil
+}
+
+
 // FilterPage handler processes filter requests and renders filtered data.
 func FilterPage(w http.ResponseWriter, r *http.Request) {
-	data, err := os.ReadFile(filePath)
-	if err != nil {
-		http.Error(w, fmt.Sprintf("Failed to read file %s: %v", filePath, err), http.StatusInternalServerError)
-		return
-	}
+    data, err := os.ReadFile(filePath)
+    if err != nil {
+        http.Error(w, fmt.Sprintf("Failed to read file %s: %v", filePath, err), http.StatusInternalServerError)
+        return
+    }
 
-	var carData CarsData
-	if err := json.Unmarshal(data, &carData); err != nil {
-		http.Error(w, fmt.Sprintf("Failed to parse JSON: %v", err), http.StatusInternalServerError)
-		return
-	}
+    var carData CarsData
+    if err := json.Unmarshal(data, &carData); err != nil {
+        http.Error(w, fmt.Sprintf("Failed to parse JSON: %v", err), http.StatusInternalServerError)
+        return
+    }
 
-	year := r.URL.Query().Get("year")
-	category := r.URL.Query().Get("category")
+    manufacturer := r.URL.Query().Get("manufacturer")
+    year := r.URL.Query().Get("year")
+    category := r.URL.Query().Get("category")
 
-	filteredCars := filterCars(carData.CarModels, year, category)
-	uniqueYears := getUniqueYears(carData.CarModels)
+    filteredCars := filterCars(carData, manufacturer, year, category)
+    uniqueYears := getUniqueYears(carData.CarModels)
 
-	filteredData := struct {
-		CarModels     []Car
-		Categories    []Category
-		Manufacturers []Manufacturer
-		Years         []int
-	}{
-		CarModels:     filteredCars,
-		Categories:    carData.Categories,
-		Manufacturers: carData.Manufacturers,
-		Years:         uniqueYears,
+    var message string
+    if len(filteredCars) == 0 {
+        message = "No cars found, try again!"
+    }
+
+    filteredData := struct {
+        CarModels     []Car
+        Categories    []Category
+        Manufacturers []Manufacturer
+        Years         []int
+        Message       string
+    }{
+        CarModels:     filteredCars,
+        Categories:    carData.Categories,
+        Manufacturers: carData.Manufacturers,
+        Years:         uniqueYears,
+        Message:       message,
 	}
 
 	// Parse and execute the filtered template
-	tmpl, err := template.ParseFiles("static/filtered.html")
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-	if err := tmpl.Execute(w, filteredData); err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-	}
+    tmpl, err := template.ParseFiles("static/filtered.html")
+    if err != nil {
+        http.Error(w, err.Error(), http.StatusInternalServerError)
+        return
+    }
+    if err := tmpl.Execute(w, filteredData); err != nil {
+        http.Error(w, err.Error(), http.StatusInternalServerError)
+    }
 }
 
-// filterCars filters car models based on year and category.
-func filterCars(cars []Car, year, category string) []Car {
+// filterCars filters car models based on manufacturer, year, and category.
+func filterCars(data CarsData, manufacturer, year, category string) []Car {
 	var filtered []Car
-	for _, car := range cars {
-		if (year == "" || fmt.Sprintf("%d", car.Year) == year) &&
-			(category == "" || car.Category == category) {
+	for _, car := range data.CarModels {
+		if (manufacturer == "" || strings.EqualFold(data.Manufacturers[car.ManufacturerID-1].Name, manufacturer)) &&
+			(year == "" || fmt.Sprintf("%d", car.Year) == year) &&
+			(category == "" || strings.EqualFold(data.Categories[car.CategoryID-1].Name, category)) {
+			PopulateCarDetails(&car, data)
 			filtered = append(filtered, car)
 		}
 	}

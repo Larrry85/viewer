@@ -1,6 +1,8 @@
 // carData.go
 package gofiles
 
+
+
 // Manufacturer represents a car manufacturer.
 type Manufacturer struct {
 	ID      int    `json:"id"`
@@ -29,9 +31,12 @@ type Car struct {
 		Drivetrain   string `json:"drivetrain"`
 	} `json:"specifications"`
 	Image            string `json:"image"`
-	//ManufacturerName string `json:"manufacturerName"`
+    ManufacturerName string `json:"manufacturerName"`
+    CategoryName     string `json:"categoryName"`
 	Category         string `json:"categories"`
-}
+
+}	
+
 
 // CarsData contains slices of Car, Manufacturer, and Category.
 type CarsData struct {
@@ -42,3 +47,4 @@ type CarsData struct {
 	CategoriesEndpoint    string         `json:"categoriesEndpoint"`    // endpoints
 	ManufacturersEndpoint string         `json:"manufacturersEndpoint"` // endpoints
 }
+

@@ -1,3 +1,5 @@
+<!-- filtered.html -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,6 +25,15 @@
 
         <form action="/filter" method="get">
             <div class="filter">
+                <label for="manufacturer">Manufacturer:</label>
+                <select id="manufacturer" name="manufacturer">
+                    <option value="">All</option>
+                    {{range .Manufacturers}}
+                    <option value="{{.Name}}">{{.Name}}</option>
+                    {{end}}
+                </select>
+            </div>
+            <div class="filter">
                 <label for="year">Year:</label>
                 <select id="year" name="year">
                     <option value="">All</option>
@@ -39,7 +50,8 @@
                     <option value="{{.Name}}">{{.Name}}</option>
                     {{end}}
                 </select>
-            </div>
+                </div>
+
             <button type="submit" target="_blank">Apply Filters</button>
             <br><br>
             <div >
@@ -49,6 +61,13 @@
             </div><br>     
         </form>
     </div><!-- Filter Form END -->
+
+
+        <!-- Message Section -->
+
+        <div class="message">
+            <p>{{.Message}}</p>
+        </div>
 
 
 
@@ -67,27 +86,15 @@
                             <table class="car-details">
                                 <tr>
                                     <td>Manufacturer</td>
-                                    <td>{{.Name}}</td>
+                                    <td>{{.ManufacturerName}}</td>
                                 </tr>
                                 <tr>
                                     <td>Year</td>
                                     <td>{{.Year}}</td>
                                 </tr>
                                 <tr>
-                                    <td>Engine</td>
-                                    <td>{{.Specifications.Engine}}</td>
-                                </tr>
-                                <tr>
-                                     <td>Horsepower</td>
-                                     <td>{{.Specifications.Horsepower}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Transmission</td>
-                                    <td>{{.Specifications.Transmission}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Drivetrain</td>
-                                    <td>{{.Specifications.Drivetrain}}</td>
+                                    <td>Category</td>
+                                    <td>{{.CategoryName}}</td>
                                 </tr>
                             </table><!-- car-details END -->
 

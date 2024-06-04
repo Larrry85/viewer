@@ -1,3 +1,5 @@
+<!-- index.html -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,6 +25,15 @@
 
         <form action="/filter" method="get">
             <div class="filter">
+                <label for="manufacturer">Manufacturer:</label>
+                <select id="manufacturer" name="manufacturer">
+                    <option value="">All</option>
+                    {{range .Manufacturers}}
+                    <option value="{{.Name}}">{{.Name}}</option>
+                    {{end}}
+                </select>
+            </div>
+            <div class="filter">
                 <label for="year">Year:</label>
                 <select id="year" name="year">
                     <option value="">All</option>
@@ -39,7 +50,8 @@
                     <option value="{{.Name}}">{{.Name}}</option>
                     {{end}}
                 </select>
-            </div>
+                </div>
+
             <button type="submit" value="Submit" href="/filter" target="_blank">Apply Filters</button>
            <br><br>
             <div >
