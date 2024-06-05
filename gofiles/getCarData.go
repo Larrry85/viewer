@@ -36,6 +36,32 @@ func GetCarDetails(idStr string) (Car, error) {
 		return Car{}, err
 	}
 
+		// Fetch manufacturer details
+		manufacturerResp, err := http.Get(fmt.Sprintf("http://localhost:3000/api/manufacturers/%d", car.ManufacturerID))
+		if err != nil {
+			return Car{}, err
+		}
+		defer manufacturerResp.Body.Close()
+	
+		var manufacturer Manufacturer
+		if err := json.NewDecoder(manufacturerResp.Body).Decode(&manufacturer); err != nil {
+			return Car{}, err
+		}
+		car.ManufacturerName = manufacturer.Name
+	
+		// Fetch category details
+		categoryResp, err := http.Get(fmt.Sprintf("http://localhost:3000/api/categories/%d", car.CategoryID))
+		if err != nil {
+			return Car{}, err
+		}
+		defer categoryResp.Body.Close()
+	
+		var category Category
+		if err := json.NewDecoder(categoryResp.Body).Decode(&category); err != nil {
+			return Car{}, err
+		}
+		car.CategoryName = category.Name
+	
 	return car, nil // ...lähettää sen auton data carDetails.html sivulle
 }
 
