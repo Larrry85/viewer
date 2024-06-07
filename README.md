@@ -62,7 +62,7 @@ localhost:3000/api/models/8
 1. Index.html:
 
 *  car gallery of all the cars
-*  details button for enxtra info
+*  details button for extra info
 *  user can filter cars by:
     - manufacturers
     - year
