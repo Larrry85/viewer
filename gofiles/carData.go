@@ -51,4 +51,3 @@ type CarsData struct {
 	CategoriesEndpoint    string         `json:"categoriesEndpoint"`    // endpoints
 	ManufacturersEndpoint string         `json:"manufacturersEndpoint"` // 
 }
-
