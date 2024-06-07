@@ -7,7 +7,7 @@ This is task number four.
 
 ### Before starting the program:
 
-1. Download 'api cars directory' inside 'cars' project from kood/sisu's page - if it is not in 'cars' repo already.
+1. Download 'api cars directory' inside 'cars' project from kood/sisu's page - if it is not in 'cars' repository already.
 Read the README.md in 'api' directory:
 
 Install NodeJS
@@ -22,9 +22,10 @@ npm install
 1. Type in terminal window:
 
 ```
-go run main.go
+go build main.go
+./main
 ```
-2. Close server:
+2. Close server at the end:
 
 ```
 Ctrl+C
@@ -51,7 +52,6 @@ localhost:3000/api/models/{id}
 localhost:3000/api/manufacturers/{id}
 localhost:3000/api/categories/{id}
 ```
-
 example id
 ```
 localhost:3000/api/models/8
@@ -61,45 +61,59 @@ localhost:3000/api/models/8
 
 1. Index.html:
 
-*  gallery
-*  details button
-*  filtering cars by year / category
+*  car gallery of all the cars
+*  details button for enxtra info
+*  user can filter cars by:
+    - manufacturers
+    - year
+    - category
 *  
 *  
 
 2. CarDetails.html:
 
-*  car detail window
+*  car detail window showing all data of one car
+*  styled to fit different sized windowd
 *  
+*  
+* 
+
+3. filtered.html:
+
+*  this page shows cars filtered by user
+*  if no matches, it shows a message
 *  
 *  
 * 
 
 
-## TO DO
+## What we needed to to in this task
 
-Build a User-friendly Website:
+User-friendly Website:
 
-* Use HTML and CSS to create a user-friendly website.
-* Fetch and display information from the Cars API endpoints.
-* Present the information using appropriate data visualization techniques.
+* website that effectively presents the car data retrieved from the API.
+* data visualization techniques to make the information easy to understand and navigate.
+* communication with the server, triggered by user action, (fetching specific data or initiating a certain process on the server.)
 
-Server Communication:
+Go backend:
 
-* Implement user-triggered actions that communicate with the Go backend.
-* For example, clicking on a car model fetches additional details from the server.
+* a stable and well-structured backend for the website.
+* requests and errors handled gracefully to ensure a smooth user experience.
+* best practices and coding conventions for readability and maintainability.
+
+Extra requirements
 
 Advanced Filtering:
 
-* Implement advanced filtering and search options for users to easily find specific car models or manufacturers.
+* advanced filtering and search options for users to easily find specific car models or manufacturers.
 
 Comparisons:
 
-* Allow users to compare different car models side-by-side, highlighting their key features and specifications.
+* users are allowed to compare different car models side-by-side, highlighting their key features and specifications.
 
 Personalized Recommendations:
 
-* Create personalized recommendations for users based on their preferences or past interactions with the website.
+* personalized recommendations for users based on their preferences or past interactions with the website.
 
 
 ## Cars-viewer structure
@@ -125,10 +139,12 @@ cars/
 │
 ├── static/
 │   ├── carDetails.html     // car details page
+│   ├── filtered.html       // filtered cars page
 │   ├── index.html          // main page
 │   └── styles.css   
 │
 ├── go.mod
+├── main
 ├── main.go                 // starts node server and go server
 └── README.md
              
@@ -136,4 +152,4 @@ cars/
 
 ### Coders
 
-Laura Levistö - Jonathan Dahl - 5/24
+Laura Levistö - Jonathan Dahl - 6/24
