@@ -1,9 +1,13 @@
 // carData.go
 package gofiles
 
+// This file defines the core data structures used in the application for representing cars,
+// manufacturers, and categories. These structs are equipped with JSON tags to facilitate 
+// easy serialization and deserialization of JSON data. The CarsData struct aggregates these
+// entities and includes endpoint information, making it a central point for managing 
+// car-related data in the application.
 
-
-// Manufacturer represents a car manufacturer.
+// struct that represents a car manufacturer.
 type Manufacturer struct {
 	ID      int    `json:"id"`
 	Name    string `json:"name"`
@@ -11,13 +15,13 @@ type Manufacturer struct {
 	Year    int    `json:"foundingYear"`
 }
 
-// Category represents a car category.
+// struct that represents a category of cars 
 type Category struct {
 	ID   int    `json:"id"`
 	Name string `json:"name"`
 }
 
-// Car represents a car model.
+// struct that represents a car model
 type Car struct {
 	ID             int    `json:"id"`
 	Name           string `json:"name"`
@@ -38,13 +42,13 @@ type Car struct {
 }	
 
 
-// CarsData contains slices of Car, Manufacturer, and Category.
+// struct that contains slices of Car, Manufacturer, and Category.
 type CarsData struct {
 	CarModels             []Car          `json:"carModels"`
 	Manufacturers         []Manufacturer `json:"manufacturers"`
 	Categories            []Category     `json:"categories"`
-	ModelEndpoint         string         `json:"modelsEndpoint"`        // endpoints
+	ModelEndpoint         string         `json:"modelsEndpoint"`        //
 	CategoriesEndpoint    string         `json:"categoriesEndpoint"`    // endpoints
-	ManufacturersEndpoint string         `json:"manufacturersEndpoint"` // endpoints
+	ManufacturersEndpoint string         `json:"manufacturersEndpoint"` // 
 }
 
