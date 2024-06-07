@@ -2,15 +2,15 @@
 package main
 
 import (
-	"cars/gofiles" 	// local package for handling go files
-	"net/http"		// HTTP server functionality
-	"log"			// logging
-	"os"			// executing external commands and...
-	"os/exec"		// ...managing the operating system environment
+	"cars/gofiles" // local package for handling go files
+	"log"          // logging
+	"net/http"     // HTTP server functionality
+	"os"           // executing external commands and...
+	"os/exec"      // ...managing the operating system environment
 )
 
 // The code sets up a Go HTTP server with several routes and handlers for serving a homepage,
-// filtering cars, and displaying car details. It also serves static files and images with 
+// filtering cars, and displaying car details. It also serves static files and images with
 // CORS support. Additionally, it starts a Node.js application concurrently using a goroutine.
 // This setup allows the Go server to handle web requests while the Node.js application runs
 // separately, potentially handling other tasks like API requests
@@ -28,8 +28,8 @@ func main() {
 
 // start Go server
 func GoServer() error {
-	http.HandleFunc("/", gofiles.HomePage) // routes the root URL ("/") to the HomePage
-	http.HandleFunc("/filter", gofiles.FilterPage) // routes "/filter" to the FilterPage
+	http.HandleFunc("/", gofiles.HomePage)                     // routes the root URL ("/") to the HomePage
+	http.HandleFunc("/filter", gofiles.FilterPage)             // routes "/filter" to the FilterPage
 	http.HandleFunc("/car-details", gofiles.CarDetailsHandler) // routes "/car-details" to the CarDetailsHandler
 
 	// serves static files from the "static" directory
@@ -55,6 +55,6 @@ func startNode() {
 	err := cmd.Start()
 	if err != nil {
 		log.Fatalf("Failed to start main.js application: %v", err)
-	}// logs the PID of the started Node.js process
-	log.Printf("main.js application started with PID %d", cmd.Process.Pid)
+	} // logs the PID of the started Node.js process
+	log.Printf("starting node server")
 }
