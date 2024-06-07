@@ -2,22 +2,23 @@
 package main
 
 import (
-	"cars/gofiles" // cars/gofiles: A local package for handling various server functions.
-	"net/http"
-	"log"
-	"os"
-	"os/exec"
+	"cars/gofiles" 	// local package for handling go files
+	"net/http"		// HTTP server functionality
+	"log"			// logging
+	"os"			// executing external commands and...
+	"os/exec"		// ...managing the operating system environment
 )
 
-// The code defines an HTTP server in Go that serves a homepage and car details. 
-// It reads car data from a JSON file, processes it, and renders it in HTML templates. 
-// The server also handles image serving with CORS support and fetches car details 
-// from an API based on a car ID
+// The code sets up a Go HTTP server with several routes and handlers for serving a homepage,
+// filtering cars, and displaying car details. It also serves static files and images with 
+// CORS support. Additionally, it starts a Node.js application concurrently using a goroutine.
+// This setup allows the Go server to handle web requests while the Node.js application runs
+// separately, potentially handling other tasks like API requests
 
-// main(): Starts the application
+// starts the application
 func main() {
 
-	// Here how to start node mani.js
+	// Starts Node.js application concurrently with the Go server using a goroutine
 	go startNode()
 
 	// start Go server
@@ -25,42 +26,35 @@ func main() {
 
 }
 
-
 // start Go server
 func GoServer() error {
-	http.HandleFunc("/", gofiles.HomePage) // "/" handled by HomePage
+	http.HandleFunc("/", gofiles.HomePage) // routes the root URL ("/") to the HomePage
+	http.HandleFunc("/filter", gofiles.FilterPage) // routes "/filter" to the FilterPage
+	http.HandleFunc("/car-details", gofiles.CarDetailsHandler) // routes "/car-details" to the CarDetailsHandler
 
-	
-	// FILTER CARS ///////////////////
-	http.HandleFunc("/filter", gofiles.FilterPage)
-	
-
-	http.HandleFunc("/car-details", gofiles.CarDetailsHandler) // /car-details handled by CarDetailsHandler
-
-	// /static/ serves static files
+	// serves static files from the "static" directory
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
-	// /img/ serves images with CORS middleware
+	// serves images from the "img" directory with CORS support
 	http.Handle("/img/", gofiles.CorsMiddleware(http.StripPrefix("/img/", http.HandlerFunc(gofiles.ServeImage))))
 
 	log.Println("Starting server at port 8080")
-	return http.ListenAndServe(":8080", nil)
+	return http.ListenAndServe(":8080", nil) // starts the HTTP server on port 8080
 }
 
 func startNode() {
-	// Define the command to start the main.js application
+	// creates a command to start the Node.js application with main.js
 	cmd := exec.Command("node", "main.js")
 
-	// Set the working directory to the Node.js app directory
+	// sets the working directory to the "api" directory where main.js is located
 	cmd.Dir = "api"
 
-	// Set the environment variables if needed
+	// sets the environment variables for the command
 	cmd.Env = os.Environ()
 
 	// Start the Node.js application
 	err := cmd.Start()
 	if err != nil {
 		log.Fatalf("Failed to start main.js application: %v", err)
-	}
+	}// logs the PID of the started Node.js process
 	log.Printf("main.js application started with PID %d", cmd.Process.Pid)
-
 }
