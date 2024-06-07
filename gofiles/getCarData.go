@@ -1,15 +1,16 @@
+// getCarData.go
 package gofiles
 
 import (
-	"encoding/json"
-	"errors"
-	"fmt"
-	"html/template"
-	"net/http"
-	"os"
-	"sort"
-	"strconv"
-	"strings"
+	"encoding/json"		// encoding and decoding JSON data
+	"errors"			// error handling
+	"fmt"				// formatting strings
+	"html/template"		// rendering HTML templates
+	"net/http"			// handling HTTP requests and responses
+	"os"				// file operations
+	"sort"				// sorting slices
+	"strconv"			// string conversions
+	"strings"			// string manipulation
 )
 
 // This file handling car data, fetching car details from an API,

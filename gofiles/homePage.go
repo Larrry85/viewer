@@ -1,7 +1,8 @@
+// homePage.go
 package gofiles
 
 import (
-	"encoding/json"		// decoding JSON data
+	"encoding/json"		// encoding and decoding JSON data
 	"fmt"				// formatting strings
 	"html/template"		// rendering HTML templates
 	"net/http"			// handling HTTP requests and responses
