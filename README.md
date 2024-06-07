@@ -59,7 +59,7 @@ localhost:3000/api/models/8
 
 ### Page functionality:
 
-1. Index.html:
+1. index.html:
 
 *  car gallery of all the cars
 *  details button for extra info
@@ -70,7 +70,7 @@ localhost:3000/api/models/8
 *  
 *  
 
-2. CarDetails.html:
+2. carDetails.html:
 
 *  car detail window showing all data of one car
 *  styled to fit different sized windowd
