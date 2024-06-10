@@ -2,9 +2,9 @@
 package gofiles
 
 // This file defines the core data structures used in the application for representing cars,
-// manufacturers, and categories. These structs are equipped with JSON tags to facilitate 
+// manufacturers, and categories. These structs are equipped with JSON tags to facilitate
 // easy serialization and deserialization of JSON data. The CarsData struct aggregates these
-// entities and includes endpoint information, making it a central point for managing 
+// entities and includes endpoint information, making it a central point for managing
 // car-related data in the application.
 
 // struct that represents a car manufacturer.
@@ -15,7 +15,7 @@ type Manufacturer struct {
 	Year    int    `json:"foundingYear"`
 }
 
-// struct that represents a category of cars 
+// struct that represents a category of cars
 type Category struct {
 	ID   int    `json:"id"`
 	Name string `json:"name"`
@@ -34,13 +34,12 @@ type Car struct {
 		Transmission string `json:"transmission"`
 		Drivetrain   string `json:"drivetrain"`
 	} `json:"specifications"`
-	Image            string `json:"image"`
-    ManufacturerName string `json:"manufacturerName"`
-    CategoryName     string `json:"categoryName"`
-	Category         string `json:"categories"`
-
-}	
-
+	Image               string `json:"image"`
+	ManufacturerName    string `json:"manufacturerName"`
+	ManufacturerCountry string `json:"manufacturerCountry"`
+	ManufacturerYear    int    `json:"manufacturerYear"`
+	CategoryName        string `json:"categoryName"`
+}
 
 // struct that contains slices of Car, Manufacturer, and Category.
 type CarsData struct {
@@ -49,5 +48,5 @@ type CarsData struct {
 	Categories            []Category     `json:"categories"`
 	ModelEndpoint         string         `json:"modelsEndpoint"`        //
 	CategoriesEndpoint    string         `json:"categoriesEndpoint"`    // endpoints
-	ManufacturersEndpoint string         `json:"manufacturersEndpoint"` // 
+	ManufacturersEndpoint string         `json:"manufacturersEndpoint"` //
 }
