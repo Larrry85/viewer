@@ -44,4 +44,5 @@ localhost:8080
 
 ### Coders
 
-Laura Levistö - Jonathan Dahl - 6/24
+Laura Levistö - Jonathan Dahl       
+6/24
